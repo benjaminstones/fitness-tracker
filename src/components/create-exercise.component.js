@@ -1,63 +1,65 @@
 import React from 'react';
-import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+// import "react-datepicker/dist/react-datepicker.css";
+// import { useState } from "react";
 
 const CreateExercise = () => {
-    const [username, setUsername] = useState('');
-    const [description, setDescription] = useState('');
-    const [duration, setDuration] = useState(0);
-    const [date, setDate] = useState(new Date());
+    // const [username, setUsername] = useState('');
+    // const [description, setDescription] = useState('');
+    // const [duration, setDuration] = useState(0);
+    // const [date, setDate] = useState(new Date());
     // const [users, setUsers] = useState([
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+  // this.onChangeUsername = this.onChangeUsername.bind(this);
 
-    onChangeUsername(e) {
-        setUsername(e.target.value)
-    };
+    // onChangeUsername(e) {
+    //     setUsername(e.target.value)
+    // };
 
-    onChangeDescription(e) {
-        setDescription(e.target.value)
-    };
+    // onChangeDescription(e) {
+    //     setDescription(e.target.value)
+    // };
 
-    onChangeDuration(e) {
-        setDuration(e.target.value)
-    };
+    // onChangeDuration(e) {
+    //     setDuration(e.target.value)
+    // };
 
-    onChangeDate(date) {
-        setDate(date)
-    };
+    // onChangeDate(date) {
+    //     setDate(date)
+    // };
 
-    onSubmit(e) {
-        e.preventDefault();
+    // onSubmit(e) {
+    //     e.preventDefault();
     
-        const exercise = {
-          username: username,
-          description: description,
-          duration: duration,
-          date: date
-        }
+    //     const exercise = {
+    //       username: username,
+    //       description: description,
+    //       duration: duration,
+    //       date: date
+    //     }
 
-        console.log(exercise);
-        window.location = '/';
-    }
+    //     console.log(exercise);
+    //     window.location = '/';
+    // }
     return (
         <div>
           <h3>Create New Exercise Log</h3>
-          <form onSubmit={this.onSubmit}>
+          <form>
+          {/* <form onSubmit={this.onSubmit}> */}
             <div className="form-group"> 
               <label>Username: </label>
-              <select ref="userInput"
+              <select 
                   required
                   className="form-control"
-                  value={this.state.username}
-                  onChange={this.onChangeUsername}>
+                //   value={this.state.username}
+                //   onChange={this.onChangeUsername}
+                >
                   {
-                    this.state.users.map(function(user) {
-                      return <option 
-                        key={user}
-                        value={user}>{user}
-                        </option>;
-                    })
+                    // this.state.users.map(function(user) {
+                    //   return <option 
+                    //     key={user}
+                    //     value={user}>{user}
+                    //     </option>;
+                    // })
                   }
               </select>
             </div>
@@ -66,8 +68,8 @@ const CreateExercise = () => {
               <input  type="text"
                   required
                   className="form-control"
-                  value={this.state.description}
-                  onChange={this.onChangeDescription}
+                //   value={this.state.description}
+                //   onChange={this.onChangeDescription}
                   />
             </div>
             <div className="form-group">
@@ -75,17 +77,17 @@ const CreateExercise = () => {
               <input 
                   type="text" 
                   className="form-control"
-                  value={this.state.duration}
-                  onChange={this.onChangeDuration}
+                //   value={this.state.duration}
+                //   onChange={this.onChangeDuration}
                   />
             </div>
             <div className="form-group">
               <label>Date: </label>
               <div>
-                <DatePicker
+                {/* <DatePicker
                   selected={this.state.date}
                   onChange={this.onChangeDate}
-                />
+                /> */}
               </div>
             </div>
     
