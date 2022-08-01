@@ -1,65 +1,47 @@
 import React from 'react';
-// import "react-datepicker/dist/react-datepicker.css";
-// import { useState } from "react";
+import DatePicker from "react-datepicker";
+import { useState } from "react";
 
 const CreateExercise = () => {
-    // const [username, setUsername] = useState('');
-    // const [description, setDescription] = useState('');
-    // const [duration, setDuration] = useState(0);
-    // const [date, setDate] = useState(new Date());
-    // const [users, setUsers] = useState([
+    const [username, setUsername] = useState('');
+    const [description, setDescription] = useState('');
+    const [duration, setDuration] = useState(0);
+    const [date, setDate] = useState(new Date());
+    const [users, setUsers] = useState(['Ben', 'Jack', 'David'])
 
-  // this.onChangeUsername = this.onChangeUsername.bind(this);
+  const updateUsername = e => setUsername(e.target.value);
+  const updateDescription = e => setDescription(e.target.value);
+  const updateDuration = e => setDuration(e.target.value);
 
-    // onChangeUsername(e) {
-    //     setUsername(e.target.value)
-    // };
 
-    // onChangeDescription(e) {
-    //     setDescription(e.target.value)
-    // };
+  const onSubmit = e => {
+    const exercise = {
+      username: username,
+      description: description,
+      duration: duration,
+      date: date
+    }
 
-    // onChangeDuration(e) {
-    //     setDuration(e.target.value)
-    // };
-
-    // onChangeDate(date) {
-    //     setDate(date)
-    // };
-
-    // onSubmit(e) {
-    //     e.preventDefault();
-    
-    //     const exercise = {
-    //       username: username,
-    //       description: description,
-    //       duration: duration,
-    //       date: date
-    //     }
-
-    //     console.log(exercise);
-    //     window.location = '/';
-    // }
+    console.log(exercise);
+  }
     return (
         <div>
           <h3>Create New Exercise Log</h3>
-          <form>
-          {/* <form onSubmit={this.onSubmit}> */}
+          <form onSubmit={onSubmit}>
             <div className="form-group"> 
               <label>Username: </label>
-              <select 
+              <select type="text" 
                   required
                   className="form-control"
-                //   value={this.state.username}
-                //   onChange={this.onChangeUsername}
+                  onChange={updateUsername}
                 >
                   {
-                    // this.state.users.map(function(user) {
-                    //   return <option 
-                    //     key={user}
-                    //     value={user}>{user}
-                    //     </option>;
-                    // })
+                    users.map(function(user) {
+                      return <option 
+                        key={user}
+                        value={user}>{user}
+                        </option>;
+                    })
                   }
               </select>
             </div>
@@ -68,8 +50,7 @@ const CreateExercise = () => {
               <input  type="text"
                   required
                   className="form-control"
-                //   value={this.state.description}
-                //   onChange={this.onChangeDescription}
+                   onChange={updateDescription}
                   />
             </div>
             <div className="form-group">
@@ -77,17 +58,16 @@ const CreateExercise = () => {
               <input 
                   type="text" 
                   className="form-control"
-                //   value={this.state.duration}
-                //   onChange={this.onChangeDuration}
+                  onChange={updateDuration}
                   />
             </div>
             <div className="form-group">
               <label>Date: </label>
               <div>
-                {/* <DatePicker
-                  selected={this.state.date}
-                  onChange={this.onChangeDate}
-                /> */}
+                <DatePicker
+                  selected={date}
+                  onChange={(date) => setDate(date)}
+                />
               </div>
             </div>
     
