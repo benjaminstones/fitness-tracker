@@ -36,7 +36,7 @@ const CreateExercise = () => {
                   onChange={updateUsername}
                 >
                   {
-                    users.map(function(user) {
+                    users.map((user) => {
                       return <option 
                         key={user}
                         value={user}>{user}
