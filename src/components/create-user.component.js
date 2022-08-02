@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateUser = () => {
@@ -12,6 +13,8 @@ const onSubmit = e => {
     const user = {
       username: username
     }
+
+    axios.post('http://localhost:5001/users/add', user).then(res => console.log(res.data))
 
     console.log(user);
 
