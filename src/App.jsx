@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/navbar.component"
 import ExercisesList from "./components/exercises-list.component";
@@ -10,16 +10,16 @@ import CreateUser from "./components/create-user.component";
 
 function App() {
   return (
-      <div className="container">
+    <div className="container">
       <Navbar />
-      <br/>
+      <br />
       <Routes>
-        <Route path="/" exact element={<ExercisesList/>} />
-        <Route path="/edit/:id" element={<EditExercise/>} />
-        <Route path="/create" element={<CreateExercise/>} />
-        <Route path="/user" element={<CreateUser/>} />
+        <Route path="/" exact element={<ExercisesList />} />
+        <Route path="/edit/:id" element={<EditExercise />} />
+        <Route path="/create" element={<CreateExercise />} />
+        <Route path="/user" element={<CreateUser />} />
       </Routes>
-      </div>
+    </div>
   );
 }
 
