@@ -9,13 +9,13 @@ const ExercisesList = () => {
     useEffect(() => {
         axios.get('http://localhost:5001/exercises/')
         .then(res => {
-            setExercises({ exercises: res.data })
+            setExercises( res.data )
             console.log(exercises);
         })
         .catch((error) => {
             console.log(error);
         })
-    }, [exercises])
+    }, [])
 
     const deleteExercise = (id) => {
         axios.delete('http://localhost:5001/exercises/'+id)
@@ -40,7 +40,7 @@ const ExercisesList = () => {
           </thead>
           <tbody>
             { exercises.map(exercise => (
-                        <tr key={exercise._id}>
+                    <tr key={exercise._id}>
                         <td>{exercise.username}</td>
                         <td>{exercise.description}</td>
                         <td>{exercise.duration}</td>
@@ -50,7 +50,6 @@ const ExercisesList = () => {
           </tbody>
         </table>
         </>
-       
     )
 }
 
