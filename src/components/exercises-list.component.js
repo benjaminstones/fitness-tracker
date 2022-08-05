@@ -20,9 +20,7 @@ const ExercisesList = () => {
     const deleteExercise = (id) => {
         axios.delete('http://localhost:5001/exercises/'+id)
           .then(response => { console.log(response.data)});
-        this.setState({
-          exercises: exercises.filter(el => el._id !== id)
-        })
+        setExercises(exercises.filter(el => el._id !== id))
     }
     
     return (
@@ -40,7 +38,7 @@ const ExercisesList = () => {
           </thead>
           <tbody>
             { exercises.map(exercise => (
-                    <tr key={exercise._id}>
+                    <tr key={exercise._id} >
                         <td>{exercise.username}</td>
                         <td>{exercise.description}</td>
                         <td>{exercise.duration}</td>
