@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import DatePicker from 'react-datepicker'
+import { useParams } from "react-router-dom";
 
-
-const EditExercise = () => {
+const EditExercise = (props) => {
     const [username, setUsername] = useState('');
     const [description, setDescription] = useState('');
     const [duration, setDuration] = useState(0);
     const [date, setDate] = useState(new Date());
     const [users, setUsers] = useState([])
+    let { id } = useParams();
+
 
     useEffect(() => {
-        axios.get('http://localhost:5000/exercises/' + this.props.match.params.id)
+        axios.get('http://localhost:5001/exercises/' + id)
             .then(response => {
 
                 setUsername(response.data.username)
@@ -50,10 +52,8 @@ const EditExercise = () => {
             date: date
         }
         console.log(exercise)
-        axios.post('http://localhost:5001/exercises/update/' + this.props.match.params.id, exercise)
+        axios.post('http://localhost:5001/exercises/update/' + id, exercise)
             .then(res => console.log(res.data));
-
-        // window.location = '/';  
     }
 
     return (
@@ -62,11 +62,12 @@ const EditExercise = () => {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label>Username: </label>
-                    <select ref="userInput"
+                    <select type="text"
                         required
                         className="form-control"
                         value={username}
-                        onChange={updateUsername}>
+                        onChange={updateUsername}
+                    >
                         {
                             users.map((user) => {
                                 return <option
@@ -95,7 +96,7 @@ const EditExercise = () => {
                         onChange={updateDuration}
                     />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>Date: </label>
                     <div>
                         <DatePicker
@@ -103,7 +104,7 @@ const EditExercise = () => {
                             onChange={updateDate}
                         />
                     </div>
-                </div>
+                </div> */}
 
                 <div className="form-group">
                     <input type="submit" value="Edit Exercise Log" className="btn btn-primary" />
