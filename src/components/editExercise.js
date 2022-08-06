@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import DatePicker from 'react-datepicker'
 import { useParams } from "react-router-dom";
@@ -96,7 +95,7 @@ const EditExercise = (props) => {
                         onChange={updateDuration}
                     />
                 </div>
-                {/* <div className="form-group">
+                <div className="form-group">
                     <label>Date: </label>
                     <div>
                         <DatePicker
@@ -104,7 +103,7 @@ const EditExercise = (props) => {
                             onChange={updateDate}
                         />
                     </div>
-                </div> */}
+                </div>
 
                 <div className="form-group">
                     <input type="submit" value="Edit Exercise Log" className="btn btn-primary" />
