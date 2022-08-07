@@ -95,7 +95,7 @@ const EditWorkout = (props) => {
                         onChange={updateDuration}
                     />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>Date: </label>
                     <div>
                         <DatePicker
@@ -103,7 +103,7 @@ const EditWorkout = (props) => {
                             onChange={updateDate}
                         />
                     </div>
-                </div>
+                </div> */}
 
                 <div className="form-group">
                     <input type="submit" value="Edit Exercise Log" className="btn btn-primary" />
