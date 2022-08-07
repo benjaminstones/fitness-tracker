@@ -18,11 +18,13 @@ connection.once('open', () => {
 app.use(cors());
 app.use(express.json());
 
-const exercisesRouter = require('./routes/workouts')
+const workoutsRouter = require('./routes/workouts')
 const usersRouter = require('./routes/users')
+const exercisesRouter = require('./routes/exercises')
 
-app.use('/workouts', exercisesRouter)
+app.use('/workouts', workoutsRouter)
 app.use('/users', usersRouter)
+app.use('/exercises', exercisesRouter)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
