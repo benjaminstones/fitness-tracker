@@ -13,7 +13,7 @@ const EditWorkout = (props) => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5001/exercises/' + id)
+        axios.get('http://localhost:5001/workouts/' + id)
             .then(response => {
 
                 setUsername(response.data.username)
@@ -51,7 +51,7 @@ const EditWorkout = (props) => {
             date: date
         }
         console.log(exercise)
-        axios.post('http://localhost:5001/exercises/update/' + id, exercise)
+        axios.post('http://localhost:5001/workouts/update/' + id, exercise)
             .then(res => console.log(res.data));
     }
 

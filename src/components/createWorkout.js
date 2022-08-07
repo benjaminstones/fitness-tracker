@@ -27,17 +27,17 @@ const CreateWorkout = () => {
   const updateDuration = e => setDuration(e.target.value);
 
   const onSubmit = e => {
-    const exercise = {
+    const workout = {
       username: username,
       description: description,
       duration: duration,
       date: date
     }
-    axios.post('http://localhost:5001/exercises/add', exercise).then(res => console.log(res.data))
+    axios.post('http://localhost:5001/workouts/add', workout).then(res => console.log(res.data))
   }
   return (
     <div>
-      <h3>Create New Exercise Log</h3>
+      <h3>Create New Workout Log</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Username: </label>
@@ -83,7 +83,7 @@ const CreateWorkout = () => {
         </div>
 
         <div className="form-group">
-          <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+          <input type="submit" value="Create Workout Log" className="btn btn-primary" />
         </div>
       </form>
     </div>

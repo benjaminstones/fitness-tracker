@@ -8,7 +8,7 @@ const WorkoutsList = () => {
     const [workouts, setWorkouts] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5001/exercises/')
+        axios.get('http://localhost:5001/workouts/')
             .then(res => {
                 setWorkouts(res.data)
                 console.log(workouts);
@@ -19,7 +19,7 @@ const WorkoutsList = () => {
     }, [])
 
     const deleteExercise = (id) => {
-        axios.delete('http://localhost:5001/exercises/' + id)
+        axios.delete('http://localhost:5001/workouts/' + id)
             .then(response => { console.log(response.data) });
         setWorkouts(workouts.filter(el => el._id !== id))
     }
