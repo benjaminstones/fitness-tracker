@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
+import AddExerciseModal from './addExerciseModal';
 import { useState, useEffect } from "react";
 
 const CreateWorkout = () => {
@@ -63,6 +64,10 @@ const CreateWorkout = () => {
             className="form-control"
             onChange={updateDescription}
           />
+        </div>
+        <div className="form-group">
+          <label>Exercises: </label>
+            <AddExerciseModal />
         </div>
         <div className="form-group">
           <label>Duration (in minutes): </label>
