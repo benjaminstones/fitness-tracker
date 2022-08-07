@@ -2,7 +2,7 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 
-import Navbar from "./components/navbar"
+import NavBar from './components/navbar';
 import WorkoutsList from "./components/workoutsList";
 import EditWorkout from "./components/editWorkout";
 import CreateWorkout from "./components/createWorkout";
@@ -11,7 +11,7 @@ import CreateUser from "./components/createUser";
 function App() {
   return (
     <div className="container">
-      <Navbar />
+      <NavBar />
       <br />
       <Routes>
         <Route path="/" exact element={<WorkoutsList />} />
