@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/navbar"
-import ExercisesList from "./components/exercisesList";
-import EditExercise from "./components/editExercise";
-import CreateExercise from "./components/createExercise";
+import ExercisesList from "./components/workoutsList";
+import EditExercise from "./components/editWorkout";
+import CreateExercise from "./components/createWorkout";
 import CreateUser from "./components/createUser";
 
 function App() {
