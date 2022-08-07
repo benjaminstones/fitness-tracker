@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/navbar"
-import ExercisesList from "./components/workoutsList";
-import EditExercise from "./components/editWorkout";
-import CreateExercise from "./components/createWorkout";
+import WorkoutsList from "./components/workoutsList";
+import EditWorkout from "./components/editWorkout";
+import CreateWorkout from "./components/createWorkout";
 import CreateUser from "./components/createUser";
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
       <Navbar />
       <br />
       <Routes>
-        <Route path="/" exact element={<ExercisesList />} />
-        <Route path="/edit/:id" element={<EditExercise />} />
-        <Route path="/create" element={<CreateExercise />} />
+        <Route path="/" exact element={<WorkoutsList />} />
+        <Route path="/edit/:id" element={<EditWorkout />} />
+        <Route path="/create" element={<CreateWorkout />} />
         <Route path="/user" element={<CreateUser />} />
       </Routes>
     </div>

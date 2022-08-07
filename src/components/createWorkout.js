@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 import { useState, useEffect } from "react";
 
-const CreateExercise = () => {
+const CreateWorkout = () => {
   const [username, setUsername] = useState('');
   const [description, setDescription] = useState('');
   const [duration, setDuration] = useState(0);
@@ -90,4 +90,4 @@ const CreateExercise = () => {
   )
 }
 
-export default CreateExercise;
+export default CreateWorkout;

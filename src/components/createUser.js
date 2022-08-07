@@ -9,7 +9,6 @@ const updateUsername = e => setUsername(e.target.value);
 
 const onSubmit = e => {
     e.preventDefault();
-
     const user = {
       username: username
     }
