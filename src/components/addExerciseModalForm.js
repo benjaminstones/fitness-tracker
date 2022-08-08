@@ -16,7 +16,7 @@ const AddExerciseModalForm = () => {
 
 
 
-  const onFinish = (values: any) => {
+  const onFinish = (values) => {
     console.log(values);
   };
 
@@ -27,7 +27,10 @@ const AddExerciseModalForm = () => {
   return (
     <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
       <Form.Item name="exercise" label="Exercise" rules={[{ required: true }]}>
-        <Input />
+        <Select>
+        <Option value="benchpress">Bench Press</Option>
+        <Option value="squat">Squat</Option>
+        </Select>
       </Form.Item>
       <Form.Item name="reps" label="Reps" rules={[{ required: true }]}>
           <Input />
