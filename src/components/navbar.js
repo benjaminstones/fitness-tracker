@@ -19,7 +19,6 @@ const NavBar = () => {
                 <span>Create User</span>
             </NavLink>
         </Menu.Item>
-
     </Menu>
     );
 }
