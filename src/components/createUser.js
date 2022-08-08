@@ -9,11 +9,9 @@ const CreateUser = () => {
     const updateUsername = e => setUsername(e.target.value);
 
     const onSubmit = e => {
-        // e.preventDefault();
         const user = {
             username: username
         }
-
         axios.post('http://localhost:5001/users/add', user).then(res => console.log(res.data))
 
         console.log(user);
