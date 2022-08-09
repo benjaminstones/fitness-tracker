@@ -67,7 +67,7 @@ const CreateWorkout = () => {
         </div>
         <div className="form-group">
           <label>Exercises: </label>
-            <AddExerciseModal />
+          <AddExerciseModal />
         </div>
         <div className="form-group">
           <label>Duration (in minutes): </label>
