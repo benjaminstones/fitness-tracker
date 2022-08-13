@@ -77,7 +77,7 @@ const CreateWorkout = () => {
           ]}
         >
           <Input
-            value={username}
+            value={description}
             onChange={updateDescription}
           />
         </Form.Item>
