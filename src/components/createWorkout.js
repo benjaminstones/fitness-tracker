@@ -81,17 +81,23 @@ const CreateWorkout = () => {
             onChange={updateDescription}
           />
         </Form.Item>
+        <Form.Item
+          label="Duration"
+          name="duration"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input
+            value={duration}
+            onChange={updateDuration}
+          />
+        </Form.Item>
         <div className="form-group">
           <label>Exercises: </label>
           <AddExerciseModal />
-        </div>
-        <div className="form-group">
-          <label>Duration (in minutes): </label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={updateDuration}
-          />
         </div>
         <div className="form-group">
           <label>Date: </label>
