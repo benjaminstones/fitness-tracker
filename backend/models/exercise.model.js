@@ -11,7 +11,7 @@ const exerciseSchema = new Schema({
     minlength: 3
   },
   notes: { type: String, required: false },
-  musclegroup: { type: String, required: false}
+  musclegroup: { type: String, required: false }
 }, {
   timestamps: true,
 });
