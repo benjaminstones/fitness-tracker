@@ -14,8 +14,6 @@ const tailLayout = {
 const AddExerciseModalForm = () => {
   const [form] = Form.useForm();
 
-
-
   const onFinish = (values) => {
     console.log(values);
   };
@@ -31,6 +29,9 @@ const AddExerciseModalForm = () => {
         <Option value="benchpress">Bench Press</Option>
         <Option value="squat">Squat</Option>
         </Select>
+      </Form.Item>
+      <Form.Item name="sets" label="Sets" rules={[{ required: true }]}>
+          <Input />
       </Form.Item>
       <Form.Item name="reps" label="Reps" rules={[{ required: true }]}>
           <Input />
