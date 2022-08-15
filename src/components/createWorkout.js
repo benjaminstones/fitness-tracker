@@ -95,10 +95,11 @@ const CreateWorkout = () => {
             onChange={updateDuration}
           />
         </Form.Item>
-        <div className="form-group">
+        <Form.Item>
           <label>Exercises: </label>
           <AddExerciseModal />
-        </div>
+        </Form.Item>
+
         <div className="form-group">
           <label>Date: </label>
           <div>
