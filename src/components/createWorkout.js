@@ -100,15 +100,13 @@ const CreateWorkout = () => {
           <AddExerciseModal />
         </Form.Item>
 
-        <div className="form-group">
+        <Form.Item>
           <label>Date: </label>
-          <div>
             <DatePicker
               selected={date}
               onChange={(date) => setDate(date)}
             />
-          </div>
-        </div>
+          </Form.Item>
 
         <div className="form-group">
           <input type="submit" value="Create Workout Log" className="btn btn-primary" />
