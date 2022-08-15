@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, Button } from 'antd';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
 import AddExerciseModal from './addExerciseModal';
@@ -102,15 +102,17 @@ const CreateWorkout = () => {
 
         <Form.Item>
           <label>Date: </label>
-            <DatePicker
-              selected={date}
-              onChange={(date) => setDate(date)}
-            />
-          </Form.Item>
+          <DatePicker
+            selected={date}
+            onChange={(date) => setDate(date)}
+          />
+        </Form.Item>
 
-        <div className="form-group">
-          <input type="submit" value="Create Workout Log" className="btn btn-primary" />
-        </div>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
       </Form>
     </div>
   )
