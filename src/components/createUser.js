@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
-import "react-datepicker/dist/react-datepicker.css";
 
 const CreateUser = () => {
     const [username, setUsername] = useState('');
