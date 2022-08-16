@@ -1,6 +1,5 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
-import DatePicker from "react-datepicker";
+import { Form, Input, Button, DatePicker } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from './addExerciseModal';
 import { useState, useEffect } from "react";
