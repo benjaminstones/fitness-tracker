@@ -60,7 +60,7 @@ const CreateWorkout = () => {
           ]}
         >
           <Select onChange={updateUsername}>
-          {
+            {
               users.map((user) => {
                 return <Option
                   key={user}
@@ -71,7 +71,6 @@ const CreateWorkout = () => {
 
           </Select>
         </Form.Item>
-        
         <Form.Item
           label="Description"
           name="discription"
@@ -112,7 +111,6 @@ const CreateWorkout = () => {
             onChange={(date) => setDate(date)}
           />
         </Form.Item>
-
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit
