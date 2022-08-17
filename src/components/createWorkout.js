@@ -26,6 +26,7 @@ const CreateWorkout = () => {
   const updateUsername = e => setUsername(e.target.value);
   const updateDescription = e => setDescription(e.target.value);
   const updateDuration = e => setDuration(e.target.value);
+  const { Option } = Select;
 
   const onSubmit = e => {
     const workout = {
@@ -58,21 +59,19 @@ const CreateWorkout = () => {
             },
           ]}
         >
-          <select type="text"
-            required
-            className="form-control"
-            onChange={updateUsername}
-          >
-            {
+          <Select onChange={updateUsername}>
+          {
               users.map((user) => {
-                return <option
+                return <Option
                   key={user}
                   value={user}>{user}
-                </option>;
+                </Option>;
               })
             }
-          </select>
+
+          </Select>
         </Form.Item>
+        
         <Form.Item
           label="Description"
           name="discription"
