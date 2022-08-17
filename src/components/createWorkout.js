@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, DatePicker } from 'antd';
+import { Form, Input, Button, DatePicker, Select } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from './addExerciseModal';
 import { useState, useEffect } from "react";
@@ -49,8 +49,15 @@ const CreateWorkout = () => {
         }}
         onFinish={onSubmit}
       >
-        <div className="form-group">
-          <label>Username: </label>
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
           <select type="text"
             required
             className="form-control"
@@ -65,7 +72,7 @@ const CreateWorkout = () => {
               })
             }
           </select>
-        </div>
+        </Form.Item>
         <Form.Item
           label="Description"
           name="discription"
