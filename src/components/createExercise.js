@@ -84,4 +84,4 @@ const CreateExercise = () => {
     )
 }
 
-export default CreateUser;
+export default CreateExercise;
