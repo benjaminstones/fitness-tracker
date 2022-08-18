@@ -10,6 +10,7 @@ const CreateWorkout = () => {
   const [duration, setDuration] = useState(0);
   const [date, setDate] = useState(new Date());
   const [users, setUsers] = useState([])
+  const [exercises, setExercises] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
@@ -18,6 +19,16 @@ const CreateWorkout = () => {
         setUsername(res.data[0].username)
       }
     }).catch((error) => {
+      console.log(error);
+    })
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:5001/exercises/').then(res => {
+      if (res.data.length > 0) {
+        setExercises(res.data.map(exercise => exercise.name))
+      }
+    }).catch((error) => { 
       console.log(error);
     })
   }, []);
