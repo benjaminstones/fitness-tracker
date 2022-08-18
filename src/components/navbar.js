@@ -19,6 +19,11 @@ const NavBar = () => {
                 <span>Create User</span>
             </NavLink>
         </Menu.Item>
+        <Menu.Item key="/exercise">
+            <NavLink to="/exercise">
+                <span>Create Exercise</span>
+            </NavLink>
+        </Menu.Item>
     </Menu>
     );
 }
