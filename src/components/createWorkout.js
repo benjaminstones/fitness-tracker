@@ -2,7 +2,9 @@ import React from 'react';
 import { Form, Input, Button, DatePicker, Select } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from './addExerciseModal';
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
+
+export const ExercisesContext = createContext();
 
 const CreateWorkout = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +30,7 @@ const CreateWorkout = () => {
       if (res.data.length > 0) {
         setExercises(res.data.map(exercise => exercise.name))
       }
-    }).catch((error) => { 
+    }).catch((error) => {
       console.log(error);
     })
   }, []);
@@ -112,7 +114,9 @@ const CreateWorkout = () => {
         </Form.Item>
         <Form.Item>
           <label>Exercises: </label>
-          <AddExerciseModal />
+          <ExercisesContext.Provider value={exercises}>
+            <AddExerciseModal />
+          </ExercisesContext.Provider>
         </Form.Item>
 
         <Form.Item>

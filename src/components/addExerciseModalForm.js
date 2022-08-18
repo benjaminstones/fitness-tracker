@@ -1,5 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ExercisesContext } from './createWorkout';
 
 const { Option } = Select;
 
@@ -12,6 +13,9 @@ const tailLayout = {
 };
 
 const AddExerciseModalForm = () => {
+
+  const exercises = useContext(ExercisesContext);
+
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
@@ -26,8 +30,14 @@ const AddExerciseModalForm = () => {
     <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
       <Form.Item name="exercise" label="Exercise" rules={[{ required: true }]}>
         <Select>
-        <Option value="benchpress">Bench Press</Option>
-        <Option value="squat">Squat</Option>
+        {
+              exercises.map((exercise) => {
+                return <Option
+                  key={exercise}
+                  value={exercise}>{exercise}
+                </Option>;
+              })
+            }
         </Select>
       </Form.Item>
       <Form.Item name="sets" label="Sets" rules={[{ required: true }]}>
