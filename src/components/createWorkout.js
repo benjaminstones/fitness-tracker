@@ -140,6 +140,7 @@ const CreateWorkout = () => {
                 <tbody>
                     {workoutExercises.map(exercise => (
                         <tr key={exercise.name} >
+                            <td>{exercise.name }</td>
                             <td>{exercise.reps}</td>
                             <td>{exercise.sets}</td>
                         </tr>
