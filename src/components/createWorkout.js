@@ -13,6 +13,7 @@ const CreateWorkout = () => {
   const [date, setDate] = useState(new Date());
   const [users, setUsers] = useState([])
   const [exercises, setExercises] = useState([])
+  const [workoutExercises, setWorkoutExercises] = useState();
 
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
@@ -50,7 +51,7 @@ const CreateWorkout = () => {
     }
     axios.post('http://localhost:5001/workouts/add', workout).then(res => console.log(res.data))
   }
-  return (
+  return (  
     <div>
       <h3>Create New Workout Log</h3>
       <Form
@@ -118,6 +119,23 @@ const CreateWorkout = () => {
             <AddExerciseModal />
           </ExercisesContext.Provider>
         </Form.Item>
+        <table>
+        <thead className="thead-light">
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Reps</th>
+                        <th>Sets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {workoutExercises.map(exercise => (
+                        <tr key={exercise.name} >
+                            <td>{exercise.reps}</td>
+                            <td>{exercise.sets}</td>
+                        </tr>
+                    ))}
+                </tbody>
+          </table>
 
         <Form.Item>
           <label>Date: </label>
