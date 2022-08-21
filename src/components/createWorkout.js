@@ -13,7 +13,17 @@ const CreateWorkout = () => {
   const [date, setDate] = useState(new Date());
   const [users, setUsers] = useState([])
   const [exercises, setExercises] = useState([])
-  const [workoutExercises, setWorkoutExercises] = useState();
+  // const [workoutExercises, setWorkoutExercises] = useState();
+  const workoutExercises = [{
+    name: "bench",
+    reps: "6",
+    sets: "2"
+  }, 
+  {
+    name: "squat",
+    reps: "6",
+    sets: "2"
+  }]
 
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
@@ -122,7 +132,7 @@ const CreateWorkout = () => {
         <table>
         <thead className="thead-light">
                     <tr>
-                        <th>Exercise Name</th>
+                        <th>Name</th>
                         <th>Reps</th>
                         <th>Sets</th>
                     </tr>
