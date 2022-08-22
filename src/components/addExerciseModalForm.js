@@ -46,6 +46,9 @@ const AddExerciseModalForm = () => {
       <Form.Item name="reps" label="Reps" rules={[{ required: true }]}>
           <Input />
       </Form.Item>
+      <Form.Item name="weight" label="Weight" rules={[{ required: true }]}>
+          <Input />
+      </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Submit

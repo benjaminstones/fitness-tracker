@@ -23,6 +23,11 @@ const CreateWorkout = () => {
     name: "squat",
     reps: "6",
     sets: "2"
+  },
+  {
+    name: "deadlift",
+    reps: "4",
+    sets: "4"
   }]
 
   useEffect(() => {
