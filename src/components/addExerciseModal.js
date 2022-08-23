@@ -24,7 +24,7 @@ const AddExerciseModal = () => {
         Add Exercise
       </Button>
       <Modal title="Add Exercise" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-          <AddExerciseModalForm />
+        <AddExerciseModalForm />
       </Modal>
     </>
   );

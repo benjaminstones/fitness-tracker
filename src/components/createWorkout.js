@@ -18,7 +18,7 @@ const CreateWorkout = () => {
     name: "bench",
     reps: "6",
     sets: "2"
-  }, 
+  },
   {
     name: "squat",
     reps: "6",
@@ -66,7 +66,7 @@ const CreateWorkout = () => {
     }
     axios.post('http://localhost:5001/workouts/add', workout).then(res => console.log(res.data))
   }
-  return (  
+  return (
     <div>
       <h3>Create New Workout Log</h3>
       <Form
@@ -135,23 +135,23 @@ const CreateWorkout = () => {
           </ExercisesContext.Provider>
         </Form.Item>
         <table>
-        <thead className="thead-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Reps</th>
-                        <th>Sets</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {workoutExercises.map(exercise => (
-                        <tr key={exercise.name} >
-                            <td>{exercise.name }</td>
-                            <td>{exercise.reps}</td>
-                            <td>{exercise.sets}</td>
-                        </tr>
-                    ))}
-                </tbody>
-          </table>
+          <thead className="thead-light">
+            <tr>
+              <th>Name</th>
+              <th>Reps</th>
+              <th>Sets</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workoutExercises.map(exercise => (
+              <tr key={exercise.name} >
+                <td>{exercise.name}</td>
+                <td>{exercise.reps}</td>
+                <td>{exercise.sets}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
         <Form.Item>
           <label>Date: </label>
