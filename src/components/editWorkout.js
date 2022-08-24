@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker'
 import { useParams } from "react-router-dom";
 
 const EditWorkout = (props) => {
