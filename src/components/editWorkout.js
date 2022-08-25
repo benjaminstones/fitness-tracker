@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
+import { Form } from 'antd';
 
 const EditWorkout = (props) => {
     const [username, setUsername] = useState('');
@@ -57,8 +58,16 @@ const EditWorkout = (props) => {
     return (
         <div>
             <h3>Edit Exercise Log</h3>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
+            <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        onFinish={onSubmit}
+      >                <div className="form-group">
                     <label>Username: </label>
                     <select type="text"
                         required
@@ -107,7 +116,7 @@ const EditWorkout = (props) => {
                 <div className="form-group">
                     <input type="submit" value="Edit Exercise Log" className="btn btn-primary" />
                 </div>
-            </form>
+            </Form>
         </div>
     )
 }
