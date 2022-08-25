@@ -59,15 +59,15 @@ const EditWorkout = (props) => {
         <div>
             <h3>Edit Exercise Log</h3>
             <Form
-        name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        onFinish={onSubmit}
-      >                <div className="form-group">
+                name="basic"
+                labelCol={{
+                    span: 8,
+                }}
+                wrapperCol={{
+                    span: 16,
+                }}
+                onFinish={onSubmit}
+            >                <div className="form-group">
                     <label>Username: </label>
                     <select type="text"
                         required
