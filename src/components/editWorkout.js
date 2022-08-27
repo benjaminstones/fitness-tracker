@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { Form } from 'antd';
+import { Form, Input } from 'antd';
 
 const EditWorkout = (props) => {
     const [username, setUsername] = useState('');
@@ -85,15 +85,20 @@ const EditWorkout = (props) => {
                         }
                     </select>
                 </div>
-                <div className="form-group">
-                    <label>Description: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
+                <Form.Item
+                    label="Description"
+                    name="discription"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input
                         value={description}
                         onChange={updateDescription}
                     />
-                </div>
+                </Form.Item>
                 <div className="form-group">
                     <label>Duration (in minutes): </label>
                     <input
