@@ -99,15 +99,20 @@ const EditWorkout = (props) => {
                         onChange={updateDescription}
                     />
                 </Form.Item>
-                <div className="form-group">
-                    <label>Duration (in minutes): </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={duration}
-                        onChange={updateDuration}
-                    />
-                </div>
+                <Form.Item
+          label="Duration"
+          name="duration"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input
+            value={duration}
+            onChange={updateDuration}
+          />
+        </Form.Item>
                 {/* <div className="form-group">
                     <label>Date: </label>
                     <div>
