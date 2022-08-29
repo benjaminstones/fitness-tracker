@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { Form, Input } from 'antd';
+import { Form, Input, DatePicker } from 'antd';
 
 const EditWorkout = (props) => {
     const [username, setUsername] = useState('');
@@ -122,7 +122,13 @@ const EditWorkout = (props) => {
                         />
                     </div>
                 </div> */}
-
+                <Form.Item>
+                    <label>Date: </label>
+                    <DatePicker
+                        selected={date}
+                        onChange={(date) => updateDate(date)}
+                    />
+                </Form.Item>
                 <div className="form-group">
                     <input type="submit" value="Edit Exercise Log" className="btn btn-primary" />
                 </div>
