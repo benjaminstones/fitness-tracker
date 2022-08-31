@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { Form, Input, DatePicker } from 'antd';
+import { Form, Input, DatePicker, Select, Option } from 'antd';
 
 const EditWorkout = (props) => {
     const [username, setUsername] = useState('');
@@ -67,24 +67,28 @@ const EditWorkout = (props) => {
                     span: 16,
                 }}
                 onFinish={onSubmit}
-            >                <div className="form-group">
-                    <label>Username: </label>
-                    <select type="text"
-                        required
-                        className="form-control"
-                        value={username}
-                        onChange={updateUsername}
-                    >
-                        {
-                            users.map((user) => {
-                                return <option
-                                    key={user}
-                                    value={user}>{user}
-                                </option>;
-                            })
-                        }
-                    </select>
-                </div>
+            >        
+             <Form.Item
+            label="Username"
+            name="username"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select onChange={updateUsername}>
+              {
+                users.map((user) => {
+                  return <Option
+                    key={user}
+                    value={user}>{user}
+                  </Option>;
+                })
+              }
+  
+            </Select>
+          </Form.Item>
                 <Form.Item
                     label="Description"
                     name="discription"
