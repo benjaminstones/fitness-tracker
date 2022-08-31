@@ -113,15 +113,6 @@ const EditWorkout = (props) => {
                         onChange={updateDuration}
                     />
                 </Form.Item>
-                {/* <div className="form-group">
-                    <label>Date: </label>
-                    <div>
-                        <DatePicker
-                            selected={date}
-                            onChange={updateDate}
-                        />
-                    </div>
-                </div> */}
                 <Form.Item>
                     <label>Date: </label>
                     <DatePicker
