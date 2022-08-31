@@ -67,28 +67,28 @@ const EditWorkout = (props) => {
                     span: 16,
                 }}
                 onFinish={onSubmit}
-            >        
-             <Form.Item
-            label="Username"
-            name="username"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Select onChange={updateUsername}>
-              {
-                users.map((user) => {
-                  return <Option
-                    key={user}
-                    value={user}>{user}
-                  </Option>;
-                })
-              }
-  
-            </Select>
-          </Form.Item>
+            >
+                <Form.Item
+                    label="Username"
+                    name="username"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select onChange={updateUsername}>
+                        {
+                            users.map((user) => {
+                                return <Option
+                                    key={user}
+                                    value={user}>{user}
+                                </Option>;
+                            })
+                        }
+
+                    </Select>
+                </Form.Item>
                 <Form.Item
                     label="Description"
                     name="discription"
