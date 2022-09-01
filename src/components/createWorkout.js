@@ -13,7 +13,7 @@ const CreateWorkout = () => {
   const [date, setDate] = useState(new Date());
   const [users, setUsers] = useState([])
   const [exercises, setExercises] = useState([])
-  // const [workoutExercises, setWorkoutExercises] = useState();
+  // const [workoutExercises, setWorkoutExercises] = useState([]);
   const workoutExercises = [{
     name: "bench",
     reps: "6",
