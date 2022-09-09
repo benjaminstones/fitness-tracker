@@ -1,3 +1,3 @@
-Fitness Tracker App
+# Fitness Tracker App
 
 Using React, Express, MongoDB
