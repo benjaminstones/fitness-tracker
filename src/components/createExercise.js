@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 
 const CreateExercise = () => {
+    const [form] = Form.useForm();
     const [name, setName] = useState('');
     const [musclegroup, setMusclegroup] = useState('');
     const [notes, setNotes] = useState('');
@@ -18,9 +19,8 @@ const CreateExercise = () => {
             musclegroup: musclegroup,
             notes: notes
         }
+        form.resetFields();
         axios.post('http://localhost:5001/exercises/add', exercise).then(res => console.log(res.data))
-
-        console.log(exercise);
         return false;
     }
 
@@ -28,6 +28,7 @@ const CreateExercise = () => {
         <>
             <h3>Create New Exercise</h3>
             <Form
+                form={form}
                 name="basic"
                 labelCol={{
                     span: 8,
