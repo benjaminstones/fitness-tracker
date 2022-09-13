@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import React, { useState, useRef } from 'react';
+import { Form, Input, Button, Alert } from 'antd';
 import axios from 'axios';
 
 const CreateExercise = () => {
@@ -7,6 +7,8 @@ const CreateExercise = () => {
     const [name, setName] = useState('');
     const [musclegroup, setMusclegroup] = useState('');
     const [notes, setNotes] = useState('');
+    const isLoading = useRef(false);
+
 
     const updateName = e => setName(e.target.value);
     const updateMusclegroup = e => setMusclegroup(e.target.value);
@@ -20,7 +22,12 @@ const CreateExercise = () => {
             notes: notes
         }
         form.resetFields();
-        axios.post('http://localhost:5001/exercises/add', exercise).then(res => console.log(res.data))
+        axios.post('http://localhost:5001/exercises/add', exercise)
+            .then(res => {
+                console.log(res.data); 
+                isLoading.current = true;
+                console.log(isLoading);
+            })
         return false;
     }
 
@@ -77,6 +84,8 @@ const CreateExercise = () => {
                         onChange={updateNotes}
                     />
                 </Form.Item>
+                {/* TODO, fix conditional rendering */}
+                {<Alert message="Exercise added" type="success" showIcon />}
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
