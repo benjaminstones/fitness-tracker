@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { Form, Input, DatePicker, Select, Option } from 'antd';
+import { Form, Input, DatePicker, Select } from 'antd';
+
+const { Option } = Select;
+
 
 const EditWorkout = (props) => {
     const [username, setUsername] = useState('');
