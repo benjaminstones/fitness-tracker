@@ -53,7 +53,6 @@ const EditWorkout = (props) => {
             duration: duration,
             date: date
         }
-        console.log(exercise)
         axios.post('http://localhost:5001/workouts/update/' + id, exercise)
             .then(res => console.log(res.data));
     }
