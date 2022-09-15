@@ -11,7 +11,6 @@ const WorkoutsList = () => {
         axios.get('http://localhost:5001/workouts/')
             .then(res => {
                 setWorkouts(res.data)
-                console.log(workouts);
             })
             .catch((error) => {
                 console.log(error);
