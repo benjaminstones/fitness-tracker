@@ -7,6 +7,7 @@ const CreateExercise = () => {
     const [name, setName] = useState('');
     const [musclegroup, setMusclegroup] = useState('');
     const [notes, setNotes] = useState('');
+    const [submitted, setSubmitted] = useState(false);
     const isLoading = useRef(false);
 
 
@@ -22,6 +23,7 @@ const CreateExercise = () => {
             notes: notes
         }
         form.resetFields();
+        setSubmitted(true);
         axios.post('http://localhost:5001/exercises/add', exercise)
             .then(res => {
                 console.log(res.data); 
@@ -84,8 +86,7 @@ const CreateExercise = () => {
                         onChange={updateNotes}
                     />
                 </Form.Item>
-                {/* TODO, fix conditional rendering */}
-                {<Alert message="Exercise added" type="success" showIcon />}
+                {submitted && <Alert message="Exercise added" type="success" showIcon />}
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
