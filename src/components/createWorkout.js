@@ -14,22 +14,6 @@ const CreateWorkout = () => {
   const [users, setUsers] = useState([])
   const [exercises, setExercises] = useState([])
   const [workoutExercises, setWorkoutExercises] = useState([]);
-  // const workoutExercises = [{
-  //   name: "bench",
-  //   reps: "6",
-  //   sets: "2",
-  //   weight: "30kg",
-  // },
-  // {
-  //   name: "squat",
-  //   reps: "6",
-  //   sets: "2",
-  // },
-  // {
-  //   name: "deadlift",
-  //   reps: "4",
-  //   sets: "4",
-  // }]
 
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
@@ -67,7 +51,8 @@ const CreateWorkout = () => {
       username: username,
       description: description,
       duration: duration,
-      date: date
+      date: date,
+      exercises: workoutExercises,
     }
     axios.post('http://localhost:5001/workouts/add', workout).then(res => console.log(res.data))
   }
