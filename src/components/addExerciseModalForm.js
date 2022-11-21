@@ -12,9 +12,14 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const AddExerciseModalForm = () => {
+const AddExerciseModalForm = (props) => {
 
   const exercises = useContext(ExercisesContext);
+
+  const handleClick = (values) => {
+    console.log(values)
+		props.clickHandler(values);
+	};
 
   const [form] = Form.useForm();
 
@@ -27,8 +32,8 @@ const AddExerciseModalForm = () => {
   };
 
   return (
-    <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
-      <Form.Item name="exercise" label="Exercise" rules={[{ required: true }]}>
+    <Form {...layout} form={form} name="control-hooks" onFinish={handleClick}>
+      <Form.Item name="name" label="Exercise" rules={[{ required: true }]}>
         <Select>
           {
             exercises.map((exercise) => {

@@ -13,22 +13,23 @@ const CreateWorkout = () => {
   const [date, setDate] = useState(new Date());
   const [users, setUsers] = useState([])
   const [exercises, setExercises] = useState([])
-  // const [workoutExercises, setWorkoutExercises] = useState([]);
-  const workoutExercises = [{
-    name: "bench",
-    reps: "6",
-    sets: "2"
-  },
-  {
-    name: "squat",
-    reps: "6",
-    sets: "2"
-  },
-  {
-    name: "deadlift",
-    reps: "4",
-    sets: "4"
-  }]
+  const [workoutExercises, setWorkoutExercises] = useState([]);
+  // const workoutExercises = [{
+  //   name: "bench",
+  //   reps: "6",
+  //   sets: "2",
+  //   weight: "30kg",
+  // },
+  // {
+  //   name: "squat",
+  //   reps: "6",
+  //   sets: "2",
+  // },
+  // {
+  //   name: "deadlift",
+  //   reps: "4",
+  //   sets: "4",
+  // }]
 
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
@@ -50,6 +51,10 @@ const CreateWorkout = () => {
       console.log(error);
     })
   }, []);
+
+  const handleClick = (exercise => {
+    setWorkoutExercises([...workoutExercises, exercise])
+  })
 
 
   const updateUsername = e => setUsername(e.target.value);
@@ -131,7 +136,7 @@ const CreateWorkout = () => {
         <Form.Item>
           <label>Exercises: </label>
           <ExercisesContext.Provider value={exercises}>
-            <AddExerciseModal />
+            <AddExerciseModal clickHandler={handleClick}/>
           </ExercisesContext.Provider>
         </Form.Item>
         <table>
@@ -140,6 +145,7 @@ const CreateWorkout = () => {
               <th>Name</th>
               <th>Reps</th>
               <th>Sets</th>
+              <th>Weight</th>
             </tr>
           </thead>
           <tbody>
@@ -148,6 +154,7 @@ const CreateWorkout = () => {
                 <td>{exercise.name}</td>
                 <td>{exercise.reps}</td>
                 <td>{exercise.sets}</td>
+                <td>{exercise.weight}</td>
               </tr>
             ))}
           </tbody>

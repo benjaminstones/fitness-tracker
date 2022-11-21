@@ -3,8 +3,12 @@ import "antd/dist/antd.css";
 import React, { useState } from 'react';
 import AddExerciseModalForm from './addExerciseModalForm';
 
-const AddExerciseModal = () => {
+const AddExerciseModal = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleClick = (exercise) => {
+		props.clickHandler(exercise);
+	};
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -24,7 +28,7 @@ const AddExerciseModal = () => {
         Add Exercise
       </Button>
       <Modal title="Add Exercise" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <AddExerciseModalForm />
+        <AddExerciseModalForm clickHandler={handleClick}/>
       </Modal>
     </>
   );
