@@ -17,15 +17,10 @@ const AddExerciseModalForm = (props) => {
   const exercises = useContext(ExercisesContext);
 
   const handleClick = (values) => {
-    console.log(values)
 		props.clickHandler(values);
 	};
 
   const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log(values);
-  };
 
   const onReset = () => {
     form.resetFields();
