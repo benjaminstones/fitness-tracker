@@ -12,7 +12,7 @@ mongoose.connect(uri, { useNewUrlParser: true })
 
 const connection = mongoose.connection;
 connection.once('open', () => {
-    console.log('Connection to MongoDB established successfully!')
+    console.log('Connection to database established successfully!')
 })
 
 app.use(cors());

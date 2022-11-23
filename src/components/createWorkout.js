@@ -121,7 +121,7 @@ const CreateWorkout = () => {
         <Form.Item>
           <label>Exercises: </label>
           <ExercisesContext.Provider value={exercises}>
-            <AddExerciseModal clickHandler={handleClick}/>
+            <AddExerciseModal clickHandler={handleClick} />
           </ExercisesContext.Provider>
         </Form.Item>
         <table>
