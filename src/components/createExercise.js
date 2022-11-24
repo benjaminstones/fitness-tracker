@@ -26,7 +26,7 @@ const CreateExercise = () => {
         setSubmitted(true);
         axios.post('http://localhost:5001/exercises/add', exercise)
             .then(res => {
-                console.log(res.data); 
+                console.log(res.data);
                 isLoading.current = true;
                 console.log(isLoading);
             })
