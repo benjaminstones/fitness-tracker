@@ -17,8 +17,8 @@ const AddExerciseModalForm = (props) => {
   const exercises = useContext(ExercisesContext);
 
   const handleClick = (values) => {
-		props.clickHandler(values);
-	};
+    props.clickHandler(values);
+  };
 
   const [form] = Form.useForm();
 

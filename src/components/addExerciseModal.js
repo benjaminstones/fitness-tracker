@@ -7,8 +7,8 @@ const AddExerciseModal = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleClick = (exercise) => {
-		props.clickHandler(exercise);
-	};
+    props.clickHandler(exercise);
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -28,7 +28,7 @@ const AddExerciseModal = (props) => {
         Add Exercise
       </Button>
       <Modal title="Add Exercise" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <AddExerciseModalForm clickHandler={handleClick}/>
+        <AddExerciseModalForm clickHandler={handleClick} />
       </Modal>
     </>
   );
