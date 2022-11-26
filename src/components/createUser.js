@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 import axios from 'axios';
 
 const CreateUser = () => {
     const [username, setUsername] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+
 
     const updateUsername = e => setUsername(e.target.value);
 
@@ -11,7 +13,7 @@ const CreateUser = () => {
         const user = {
             username: username
         }
-        axios.post('http://localhost:5001/users/add', user).then(res => console.log(res.data))
+        axios.post('http://localhost:5001/users/add', user).then(res => setSubmitted(true));
         return false;
     }
 
@@ -43,6 +45,7 @@ const CreateUser = () => {
                         onChange={updateUsername}
                     />
                 </Form.Item>
+                {submitted && <Alert message="Exercise added" type="success" showIcon />}
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
