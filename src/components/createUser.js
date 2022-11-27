@@ -45,7 +45,7 @@ const CreateUser = () => {
                         onChange={updateUsername}
                     />
                 </Form.Item>
-                {submitted && <Alert message="Exercise added" type="success" showIcon />}
+                {submitted && <Alert message="User added" type="success" showIcon />}
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>

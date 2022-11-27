@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, DatePicker, Select } from 'antd';
+import { Form, Input, Button, DatePicker, Select, Alert } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from './addExerciseModal';
 import { useState, useEffect, createContext } from "react";
@@ -14,6 +14,8 @@ const CreateWorkout = () => {
   const [users, setUsers] = useState([])
   const [exercises, setExercises] = useState([])
   const [workoutExercises, setWorkoutExercises] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
+
 
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
@@ -55,6 +57,7 @@ const CreateWorkout = () => {
       exercises: workoutExercises,
     }
     axios.post('http://localhost:5001/workouts/add', workout).then(res => console.log(res.data))
+    setSubmitted(true)
   }
   return (
     <div>
@@ -152,6 +155,7 @@ const CreateWorkout = () => {
             onChange={(date) => setDate(date)}
           />
         </Form.Item>
+        {submitted && <Alert message="Workout added" type="success" showIcon />}
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit
