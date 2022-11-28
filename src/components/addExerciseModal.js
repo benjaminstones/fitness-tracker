@@ -18,16 +18,13 @@ const AddExerciseModal = (props) => {
     setIsModalVisible(false);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
   return (
     <>
       <Button type="primary" onClick={showModal}>
         Add Exercise
       </Button>
-      <Modal title="Add Exercise" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Add Exercise" visible={isModalVisible} onOk={handleOk} cancelButtonProps={{ style: { display: 'none' } }}>
         <AddExerciseModalForm clickHandler={handleClick} />
       </Modal>
     </>
