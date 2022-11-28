@@ -48,7 +48,7 @@ const CreateWorkout = () => {
   const updateDuration = e => setDuration(e.target.value);
   const { Option } = Select;
 
-  
+
   const columns = [
     {
       title: 'Name',
@@ -151,7 +151,7 @@ const CreateWorkout = () => {
             <AddExerciseModal clickHandler={handleClick} />
           </ExercisesContext.Provider>
         </Form.Item>
-          <Table columns={columns} dataSource={workoutExercises} />
+        <Table columns={columns} dataSource={workoutExercises} />
         <Form.Item>
           <label>Date: </label>
           <DatePicker
