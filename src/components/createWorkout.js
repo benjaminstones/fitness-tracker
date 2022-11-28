@@ -16,7 +16,6 @@ const CreateWorkout = () => {
   const [workoutExercises, setWorkoutExercises] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
-
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
       if (res.data.length > 0) {
@@ -42,12 +41,10 @@ const CreateWorkout = () => {
     setWorkoutExercises([...workoutExercises, exercise])
   })
 
-
   const updateUsername = e => setUsername(e.target.value);
   const updateDescription = e => setDescription(e.target.value);
   const updateDuration = e => setDuration(e.target.value);
   const { Option } = Select;
-
 
   const columns = [
     {
