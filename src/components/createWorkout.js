@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, DatePicker, Select, Alert } from 'antd';
+import { Form, Input, Button, DatePicker, Select, Alert, Table } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from './addExerciseModal';
 import { useState, useEffect, createContext } from "react";
@@ -47,6 +47,30 @@ const CreateWorkout = () => {
   const updateDescription = e => setDescription(e.target.value);
   const updateDuration = e => setDuration(e.target.value);
   const { Option } = Select;
+
+  
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name'
+    },
+    {
+      title: 'Sets',
+      dataIndex: 'sets',
+      key: 'sets'
+    },
+    {
+      title: 'Reps',
+      dataIndex: 'reps',
+      key: 'reps'
+    },
+    {
+      title: 'Weight',
+      dataIndex: 'weight',
+      key: 'weight'
+    },
+  ]
 
   const onSubmit = e => {
     const workout = {
@@ -127,27 +151,7 @@ const CreateWorkout = () => {
             <AddExerciseModal clickHandler={handleClick} />
           </ExercisesContext.Provider>
         </Form.Item>
-        <table>
-          <thead className="thead-light">
-            <tr>
-              <th>Name</th>
-              <th>Reps</th>
-              <th>Sets</th>
-              <th>Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            {workoutExercises.map(exercise => (
-              <tr key={exercise.name} >
-                <td>{exercise.name}</td>
-                <td>{exercise.reps}</td>
-                <td>{exercise.sets}</td>
-                <td>{exercise.weight}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
+          <Table columns={columns} dataSource={workoutExercises} />
         <Form.Item>
           <label>Date: </label>
           <DatePicker
