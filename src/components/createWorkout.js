@@ -16,6 +16,7 @@ const CreateWorkout = () => {
   const [workoutExercises, setWorkoutExercises] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
+
   useEffect(() => {
     axios.get('http://localhost:5001/users').then(res => {
       if (res.data.length > 0) {
@@ -77,7 +78,8 @@ const CreateWorkout = () => {
       date: date,
       exercises: workoutExercises,
     }
-    axios.post('http://localhost:5001/workouts/add', workout).then(res => console.log(res.data))
+    axios.post('http://localhost:5001/workouts/add', workout)
+      .then(res => console.log(res.data))
     setSubmitted(true)
   }
   return (
@@ -157,6 +159,7 @@ const CreateWorkout = () => {
           />
         </Form.Item>
         {submitted && <Alert message="Workout added" type="success" showIcon />}
+
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit

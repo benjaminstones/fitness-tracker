@@ -5,6 +5,7 @@ import axios from 'axios';
 const CreateUser = () => {
     const [username, setUsername] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [failure, setFailure] = useState(false)
 
 
     const updateUsername = e => setUsername(e.target.value);
@@ -13,7 +14,12 @@ const CreateUser = () => {
         const user = {
             username: username
         }
-        axios.post('http://localhost:5001/users/add', user).then(res => setSubmitted(true));
+        axios.post('http://localhost:5001/users/add', user)
+            .then(res => setSubmitted(true))
+            .catch(error => {
+                setFailure(true)
+                console.log(error)
+            });
         return false;
     }
 
@@ -46,6 +52,7 @@ const CreateUser = () => {
                     />
                 </Form.Item>
                 {submitted && <Alert message="User added" type="success" showIcon />}
+                {failure && <Alert message="Unable to submit workout" type="failure" showIcon />}
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
