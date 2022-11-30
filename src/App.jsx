@@ -8,6 +8,7 @@ import EditWorkout from "./components/editWorkout";
 import CreateWorkout from "./components/createWorkout";
 import CreateUser from "./components/createUser";
 import CreateExercise from './components/createExercise';
+import ViewWorkout from './components/viewWorkout';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/create" element={<CreateWorkout />} />
         <Route path="/user" element={<CreateUser />} />
         <Route path="/exercise" element={<CreateExercise />} />
+        <Route path="/view" element={<ViewWorkout />} />
       </Routes>
     </div>
   );
