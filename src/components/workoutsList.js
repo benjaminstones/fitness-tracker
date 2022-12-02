@@ -44,7 +44,7 @@ const WorkoutsList = () => {
                             <td>{exercise.duration}</td>
                             <td>{exercise.date.substring(0, 10)}</td>
                             <td>
-                               <Link to={"/view/" + exercise._id}>view</Link> | <Link to={"/edit/" + exercise._id}>edit</Link> | <a href="#" onClick={() => { deleteExercise(exercise._id) }}>delete</a>
+                                <Link to={"/view/" + exercise._id}>view</Link> | <Link to={"/edit/" + exercise._id}>edit</Link> | <a href="#" onClick={() => { deleteExercise(exercise._id) }}>delete</a>
                             </td>
                         </tr>
                     ))}
