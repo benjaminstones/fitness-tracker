@@ -21,7 +21,7 @@ function App() {
         <Route path="/create" element={<CreateWorkout />} />
         <Route path="/user" element={<CreateUser />} />
         <Route path="/exercise" element={<CreateExercise />} />
-        <Route path="/view" element={<ViewWorkout />} />
+        <Route path="/view:id" element={<ViewWorkout />} />
       </Routes>
     </div>
   );
