@@ -42,7 +42,7 @@ const CreateWorkout = () => {
     setWorkoutExercises([...workoutExercises, exercise])
   })
 
-  const updateUsername = e => setUsername(e.target.value);
+  const updateUsername = (value) => setUsername(value)
   const updateDescription = e => setDescription(e.target.value);
   const updateDuration = e => setDuration(e.target.value);
   const { Option } = Select;
@@ -104,7 +104,7 @@ const CreateWorkout = () => {
             },
           ]}
         >
-          <Select onChange={updateUsername}>
+          <Select onChange={value => updateUsername(value)}>
             {
               users.map((user) => {
                 return <Option
