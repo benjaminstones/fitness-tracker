@@ -150,7 +150,7 @@ const CreateWorkout = () => {
             <AddExerciseModal clickHandler={handleClick} />
           </ExercisesContext.Provider>
         </Form.Item>
-        <Table columns={columns} dataSource={workoutExercises} />
+        <Table columns={columns} dataSource={workoutExercises} pagination={{ pageSize: 5 }}/>
         <Form.Item>
           <label>Date: </label>
           <DatePicker
