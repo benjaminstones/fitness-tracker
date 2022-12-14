@@ -78,7 +78,6 @@ const CreateWorkout = () => {
       date: date,
       exercises: workoutExercises,
     }
-    console.log(workout)
     axios.post('http://localhost:5001/workouts/add', workout)
       .then(res => console.log(res.data))
     setSubmitted(true)
