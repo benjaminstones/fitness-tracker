@@ -27,7 +27,9 @@ const CreateExercise = () => {
         axios.post('http://localhost:5001/exercises/add', exercise)
             .then(res => {
                 isLoading.current = true;
-            })
+            }).catch((error) => {
+                console.log(error);
+            });
         return false;
     }
 

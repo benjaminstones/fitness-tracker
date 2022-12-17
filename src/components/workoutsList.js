@@ -19,7 +19,12 @@ const WorkoutsList = () => {
 
     const deleteExercise = (id) => {
         axios.delete('http://localhost:5001/workouts/' + id)
-            .then(response => { console.log(response.data) });
+            .then(response => { 
+                console.log(response.data) 
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         setWorkouts(workouts.filter(el => el._id !== id))
     }
 
