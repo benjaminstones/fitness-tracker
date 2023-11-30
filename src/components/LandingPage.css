@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #007bff;
+  --heading-color: #F7BD8B;
+  --text-color: #d6d6d6;
+}
+
+.landing-page {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+#video-background {
+  filter: brightness(90%);
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.content h1 {
+  color: var(--heading-color);
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.content p,
+.content button {
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.icon-container {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 2;
+  margin-top: 24px;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon-item:hover {
+  transform: scale(1.1);
+}
+
+.icon-item img {
+  max-width: 180px;
+  margin-bottom: 10px;
+}
+
+.ant-btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+}

@@ -9,14 +9,21 @@ import CreateWorkout from "./components/createWorkout";
 import CreateUser from "./components/createUser";
 import CreateExercise from './components/createExercise';
 import ViewWorkout from './components/viewWorkout';
+import LandingPage from './components/LandingPage'; 
+import { useLocation } from 'react-router-dom';
+
 
 function App() {
+  const location = useLocation();
+  const showNavBar = location.pathname !== "/"; 
+
   return (
-    <div className="container">
-      <NavBar />
+    <div>
+      {showNavBar && <NavBar />}
       <br />
       <Routes>
-        <Route path="/" exact element={<WorkoutsList />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/workouts" element={<WorkoutsList />} /> 
         <Route path="/edit/:id" element={<EditWorkout />} />
         <Route path="/create" element={<CreateWorkout />} />
         <Route path="/user" element={<CreateUser />} />

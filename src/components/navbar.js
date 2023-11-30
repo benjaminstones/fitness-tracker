@@ -4,8 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (<Menu mode="horizontal">
-        <Menu.Item key="/">
+                <Menu.Item key="/">
             <NavLink to="/">
+                <span>Home</span>
+            </NavLink>
+        </Menu.Item>
+        <Menu.Item key="/workouts">
+            <NavLink to="/workouts">
                 <span>Workouts</span>
             </NavLink>
         </Menu.Item>
