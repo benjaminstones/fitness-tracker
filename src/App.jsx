@@ -1,15 +1,15 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
+import NavBar from './components/NavBar/NavBar';
 
-import NavBar from './components/navbar';
-import WorkoutsList from "./components/workoutsList";
+import WorkoutsList from "./components/WorkoutsList/WorkoutsList";
 import EditWorkout from "./components/editWorkout";
-import CreateWorkout from "./components/createWorkout";
+import CreateWorkout from "./components/CreateWorkout/CreateWorkout";
 import CreateUser from "./components/createUser";
 import CreateExercise from './components/createExercise';
 import ViewWorkout from './components/viewWorkout';
-import LandingPage from './components/LandingPage'; 
+import LandingPage from './components/LandingPage/LandingPage'; 
 import { useLocation } from 'react-router-dom';
 
 
@@ -19,8 +19,10 @@ function App() {
 
   return (
     <div>
-      {showNavBar && <NavBar />}
-      <br />
+      {showNavBar &&<>
+        <NavBar />
+        <br/>
+      </> } 
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/workouts" element={<WorkoutsList />} /> 

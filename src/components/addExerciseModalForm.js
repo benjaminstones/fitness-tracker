@@ -1,6 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
 import React, { useContext } from 'react';
-import { ExercisesContext } from './createWorkout';
+import { ExercisesContext } from './CreateWorkout/CreateWorkout';
 
 const { Option } = Select;
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import './LandingPage.css';
-import videoBg from '../resources/videoBg.mp4';
-import workoutSvg from '../resources/workout.svg';
-import editSvg from '../resources/edit.svg';
-import exerciseSvg from '../resources/exercise.svg';
-import userSvg from '../resources/user.svg';
+import videoBg from '../../resources/videoBg.mp4';
+import workoutSvg from '../../resources/workout.svg';
+import editSvg from '../../resources/edit.svg';
+import exerciseSvg from '../../resources/exercise.svg';
+import userSvg from '../../resources/user.svg';
 import { Button } from 'antd';
 
 function LandingPage() {
   const handleNavigation = (path) => {
     window.location.href = path;
-  };
+  };  
 
   return (
     <div className="landing-page">

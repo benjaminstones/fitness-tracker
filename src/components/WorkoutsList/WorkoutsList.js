@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import './WorkoutsList.css';
 
 const WorkoutsList = () => {
     const [workouts, setWorkouts] = useState([])
@@ -29,7 +30,7 @@ const WorkoutsList = () => {
     }
 
     return (
-        <>
+        <div className="page-container">
             <h3>Logged Exercises</h3>
             <table className="table">
                 <thead className="thead-light">
@@ -55,7 +56,7 @@ const WorkoutsList = () => {
                     ))}
                 </tbody>
             </table>
-        </>
+        </ div>
     )
 }
 

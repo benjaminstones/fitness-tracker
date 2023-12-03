@@ -1,0 +1,42 @@
+.create-workout-container {
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+  
+  .username-input {
+    width: 50%;
+    margin-right: 10px;
+  }
+  
+  .duration-input {
+    width: 50%;
+  }
+  
+  .description-input {
+    width: 50%;
+    height: 100px;
+  }
+  
+  .exercises-container {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+  
+  .exercises-label {
+    margin-right: 20px;
+  }
+
+  .exercises-table {
+      margin-top: 12px;
+  }
+
+  .submit-button {
+    margin-top: 20px;
+  }
+
+  .ant-col-offset-8 {
+    margin-left: 0%;
+}
+  
