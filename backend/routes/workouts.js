@@ -10,16 +10,18 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const username = req.body.username;
   const description = req.body.description;
-  const duration = Number(req.body.duration);
-  // const exercises = (req.body.exercises);
-  const date = Date.parse(req.body.date);
+  const duration = req.body.duration;
+  const exercises = (req.body.exercises);
+  const startDate = Date.parse(req.body.startDate);
+  const endDate = Date.parse(req.body.endDate);
 
   const newWorkout = new Workout({
     username,
     description,
     duration,
-    // exercises,
-    date
+    exercises,
+    startDate,
+    endDate
   });
 
   newWorkout.save()
@@ -45,7 +47,10 @@ router.route('/update/:id').post((req, res) => {
       workout.username = req.body.username;
       workout.description = req.body.description;
       workout.duration = Number(req.body.duration);
-      workout.date = Date.parse(req.body.date);
+      workout.startDate = Date.parse(req.body.date);
+      workout.endDate = Date.parse(req.body.date);
+      workout.exercises = {};
+
 
       workout.save()
         .then(() => res.json('Exercise updated!'))

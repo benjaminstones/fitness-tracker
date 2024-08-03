@@ -1,8 +1,9 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { Form, Input, Button, Select, DatePicker, Alert, Table } from 'antd';
 import axios from 'axios';
-import AddExerciseModal from '../addExerciseModal';
+import AddExerciseModal from '../AddExerciseModal/AddExerciseModal';
 import './CreateWorkout.css';
+import '../ContainerStyles.css';
 import timediff from 'timediff';
 
 export const ExercisesContext = createContext();
@@ -13,7 +14,7 @@ const CreateWorkout = () => {
   const [username, setUsername] = useState('');
   const [description, setDescription] = useState('');
   const [duration, setDuration] = useState(0);
-  const [date, setDate] = useState(new Date());
+  const [dates, setDates] = useState([new Date(), new Date()]);
   const [users, setUsers] = useState([]);
   const [exercises, setExercises] = useState([]);
   const [workoutExercises, setWorkoutExercises] = useState([]);
@@ -46,11 +47,6 @@ const CreateWorkout = () => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log('Updated duration: ', duration);
-    console.log('Updated date: ', date);
-  }, [duration, date]);
-
   const handleExerciseClick = (exercise) => {
     setWorkoutExercises([...workoutExercises, exercise]);
   };
@@ -60,6 +56,7 @@ const CreateWorkout = () => {
   const formatDuration = (minutes) => `${minutes} Minutes`;
 
   const onDurationChange = (dates) => {
+    setDates(dates);
     if (dates) {
       const diff = timediff(
         dates[0].format('YYYY-MM-DD HH:mm'),
@@ -67,7 +64,6 @@ const CreateWorkout = () => {
         'm'
       ).minutes;
       setDuration(diff);
-      setDate(dates[0].format('YYYY-MM-DD'));
     }
   };
 
@@ -100,22 +96,25 @@ const CreateWorkout = () => {
       username: username,
       description: description,
       duration: formattedDuration,
-      date: date,
+      startDate: dates[0],
+      endDate: dates[1],
       exercises: workoutExercises,
     };
+    console.log(workout)
     axios.post('http://localhost:5001/workouts/add', workout)
       .then((res) => console.log(res.data));
     setSubmitted(true);
   };
 
   return (
-    <div className="create-workout-container">
-      <h3>Create New Workout Log</h3>
+    <div className="container">
+      <h1>Create New Workout Log</h1>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         onFinish={handleSubmit}
+        layout="vertical"
       >
         <Form.Item
           label="Username"
@@ -161,7 +160,7 @@ const CreateWorkout = () => {
           <ExercisesContext.Provider value={exercises}>
             <AddExerciseModal clickHandler={handleExerciseClick} />
           </ExercisesContext.Provider>
-        </div>
+        </div> 
         <Table columns={columns} dataSource={workoutExercises} pagination={{ pageSize: 5 }} className='exercises-table' />
 
         {submitted && <Alert message="Workout added" type="success" showIcon />}

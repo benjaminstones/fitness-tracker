@@ -14,7 +14,8 @@ const workoutsSchema = new Schema({
   description: { type: String, required: true },
   duration: { type: String, required: true },
   exercises: [exerciseSchema],
-  date: { type: Date, required: true },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
 }, {
   timestamps: true,
 });
