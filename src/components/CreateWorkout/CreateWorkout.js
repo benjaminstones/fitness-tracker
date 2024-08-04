@@ -1,12 +1,10 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Select, DatePicker, Alert, Table } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from '../AddExerciseModal/AddExerciseModal';
 import './CreateWorkout.css';
 import '../ContainerStyles.css';
 import timediff from 'timediff';
-
-export const ExercisesContext = createContext();
 
 const { RangePicker } = DatePicker;
 
@@ -16,7 +14,6 @@ const CreateWorkout = () => {
   const [duration, setDuration] = useState(0);
   const [dates, setDates] = useState([new Date(), new Date()]);
   const [users, setUsers] = useState([]);
-  const [exercises, setExercises] = useState([]);
   const [workoutExercises, setWorkoutExercises] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
@@ -30,20 +27,7 @@ const CreateWorkout = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5001/exercises/')
-      .then((res) => {
-        if (res.data.length > 0) {
-          const exerciseNames = res.data.map((exercise) => exercise.name);
-          setExercises(exerciseNames);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -93,14 +77,13 @@ const CreateWorkout = () => {
   const handleSubmit = (e) => {
     const formattedDuration = formatDuration(duration);
     const workout = {
-      username: username,
-      description: description,
+      username,
+      description,
       duration: formattedDuration,
       startDate: dates[0],
       endDate: dates[1],
       exercises: workoutExercises,
     };
-    console.log(workout)
     axios.post('http://localhost:5001/workouts/add', workout)
       .then((res) => console.log(res.data));
     setSubmitted(true);
@@ -157,14 +140,10 @@ const CreateWorkout = () => {
         </Form.Item>
         <div className="exercises-container">
           <label className='exercises-label'>Exercises: </label>
-          <ExercisesContext.Provider value={exercises}>
-            <AddExerciseModal clickHandler={handleExerciseClick} />
-          </ExercisesContext.Provider>
-        </div> 
+          <AddExerciseModal clickHandler={handleExerciseClick} />
+        </div>
         <Table columns={columns} dataSource={workoutExercises} pagination={{ pageSize: 5 }} className='exercises-table' />
-
         {submitted && <Alert message="Workout added" type="success" showIcon />}
-
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit" className='submit-button'>
             Submit

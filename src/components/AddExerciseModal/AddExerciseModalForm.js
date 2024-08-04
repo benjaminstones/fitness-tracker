@@ -1,6 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
-import React, { useContext } from 'react';
-import { ExercisesContext } from '../CreateWorkout/CreateWorkout';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const { Option } = Select;
 
@@ -13,8 +13,25 @@ const tailLayout = {
 };
 
 const AddExerciseModalForm = (props) => {
+  const [exercises, setExercises] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const exercises = useContext(ExercisesContext);
+  useEffect(() => {
+    const fetchExercises = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/exercises/');
+        if (response.data.length > 0) {
+          const exerciseNames = response.data.map((exercise) => exercise.name);
+          setExercises(exerciseNames);
+        }
+      } catch (error) {
+        console.error('Error fetching exercises:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchExercises();
+  }, []);
 
   const handleClick = (values) => {
     props.clickHandler(values);
@@ -28,35 +45,40 @@ const AddExerciseModalForm = (props) => {
 
   return (
     <Form {...layout} form={form} name="control-hooks" onFinish={handleClick}>
-      <Form.Item name="name" label="Exercise" rules={[{ required: true }]}>
-        <Select>
-          {
-            exercises.map((exercise) => {
-              return <Option
-                key={exercise}
-                value={exercise}>{exercise}
-              </Option>;
-            })
-          }
-        </Select>
-      </Form.Item>
-      <Form.Item name="sets" label="Sets" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="reps" label="Reps" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="weight" label="Weight" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit" className='add-button'>
-          Add
-        </Button>
-        <Button htmlType="button" onClick={onReset}>
-          Clear
-        </Button>
-      </Form.Item>
+      {loading ? (
+        <p>Loading exercises...</p>
+      ) : exercises.length > 0 ? (
+        <>
+          <Form.Item name="name" label="Exercise" rules={[{ required: true }]}>
+            <Select>
+              {exercises.map((exercise) => (
+                <Option key={exercise} value={exercise}>
+                  {exercise}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item name="sets" label="Sets" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="reps" label="Reps" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="weight" label="Weight" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit" className="add-button">
+              Add
+            </Button>
+            <Button htmlType="button" onClick={onReset}>
+              Clear
+            </Button>
+          </Form.Item>
+        </>
+      ) : (
+        <p>No exercises available.</p>
+      )}
     </Form>
   );
 };

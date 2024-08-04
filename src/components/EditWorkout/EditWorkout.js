@@ -13,14 +13,15 @@ const EditWorkout = () => {
     const [form] = Form.useForm();
     const [users, setUsers] = useState([]);
     const [workoutExercises, setWorkoutExercises] = useState([]);
+    const [loadingExercises, setLoadingExercises] = useState(true);
+    const [exercises, setExercises] = useState([]);
     const history = useNavigate();
-    let { id } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const responseWorkout = await axios.get(`http://localhost:5001/workouts/${id}`);
-                console.log(responseWorkout.data)
                 const workoutData = responseWorkout.data;
                 const responseUsers = await axios.get('http://localhost:5001/users/');
                 const usersData = responseUsers.data;
@@ -38,11 +39,28 @@ const EditWorkout = () => {
                     date: [moment(workoutData.startDate), moment(workoutData.endDate)], 
                 });
             } catch (error) {
-                console.log(error);
+                console.error('Error fetching workout data:', error);
             }
         };
         fetchData();
     }, [id, form]);
+
+    useEffect(() => {
+        const fetchExercises = async () => {
+            try {
+                const response = await axios.get('http://localhost:5001/exercises/');
+                if (response.data.length > 0) {
+                    const exerciseNames = response.data.map((exercise) => exercise.name);
+                    setExercises(exerciseNames);
+                }
+            } catch (error) {
+                console.error('Error fetching exercises:', error);
+            } finally {
+                setLoadingExercises(false);
+            }
+        };
+        fetchExercises();
+    }, []);
 
     const onSubmit = (values) => {
         const exercise = {
@@ -53,10 +71,8 @@ const EditWorkout = () => {
             exercises: workoutExercises,
         };
 
-        console.log(exercise)
         axios.post(`http://localhost:5001/workouts/update/${id}`, exercise)
             .then(res => {
-                console.log(res.data);
                 history.push('/'); 
             });
     };
@@ -99,7 +115,7 @@ const EditWorkout = () => {
                 onFinish={onSubmit}
                 layout='vertical'
                 initialValues={{
-                    date: [moment(), moment()], // Default to current date range, but will be overridden by useEffect
+                    date: [moment(), moment()], 
                 }}
             >
                 <Form.Item
@@ -132,7 +148,11 @@ const EditWorkout = () => {
                 </Form.Item>
                 <div className="exercises-container">
                     <label className='exercises-label'>Exercises: </label>
-                    <AddExerciseModal clickHandler={handleExerciseClick} />
+                    {loadingExercises ? (
+                        <p>Loading exercises...</p>
+                    ) : (
+                        <AddExerciseModal clickHandler={handleExerciseClick} />
+                    )}
                 </div>
                 <Table columns={columns} dataSource={workoutExercises} pagination={{ pageSize: 5 }} className='exercises-table' />
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

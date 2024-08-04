@@ -2,7 +2,7 @@ import { Button, Modal } from 'antd';
 import "antd/dist/antd.css";
 import React, { useState } from 'react';
 import AddExerciseModalForm from './AddExerciseModalForm';
-import './AddExerciseModal.css'
+import './AddExerciseModal.css';
 
 const AddExerciseModal = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -18,7 +18,6 @@ const AddExerciseModal = (props) => {
   const handleOk = () => {
     setIsModalVisible(false);
   };
-
 
   return (
     <>
