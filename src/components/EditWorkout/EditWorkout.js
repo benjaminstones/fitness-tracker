@@ -15,7 +15,7 @@ const EditWorkout = () => {
     const [workoutExercises, setWorkoutExercises] = useState([]);
     const [loadingExercises, setLoadingExercises] = useState(true);
     const [exercises, setExercises] = useState([]);
-    const history = useNavigate();
+    const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
@@ -66,14 +66,22 @@ const EditWorkout = () => {
         const exercise = {
             username: values.username,
             description: values.description,
-            startDate: values.date[0], 
-            endDate: values.date[1],
-            exercises: workoutExercises,
+            startDate: values.date[0].toISOString(), 
+            endDate: values.date[1].toISOString(),
+            exercises: workoutExercises.map(ex => ({
+                name: ex.name,
+                sets: ex.sets,
+                reps: ex.reps,
+                weight: ex.weight,
+            })),
         };
 
         axios.post(`http://localhost:5001/workouts/update/${id}`, exercise)
             .then(res => {
-                history.push('/'); 
+                navigate('/');
+            })
+            .catch(err => {
+                console.error('Error updating workout:', err);
             });
     };
 
@@ -101,7 +109,11 @@ const EditWorkout = () => {
     ];
 
     const handleExerciseClick = (exercise) => {
-        setWorkoutExercises([...workoutExercises, exercise]);
+        if (exercise.name && exercise.sets && exercise.reps && exercise.weight) {
+            setWorkoutExercises([...workoutExercises, exercise]);
+        } else {
+            console.error('Incomplete exercise data:', exercise);
+        }
     };
 
     return (
