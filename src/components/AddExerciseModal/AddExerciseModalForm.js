@@ -34,7 +34,11 @@ const AddExerciseModalForm = (props) => {
   }, []);
 
   const handleClick = (values) => {
-    props.clickHandler(values);
+    const exerciseData = {
+      ...values,
+      id: props.exercise && props.exercise._id ? props.exercise._id : null
+    };    
+    props.clickHandler(exerciseData);
   };
 
   const [form] = Form.useForm();
@@ -42,6 +46,14 @@ const AddExerciseModalForm = (props) => {
   const onReset = () => {
     form.resetFields();
   };
+
+  useEffect(() => {
+    if (props.exercise) {
+      form.setFieldsValue(props.exercise);
+    } else {
+      onReset();
+    }
+  }, [props.exercise, form]);
 
   return (
     <Form {...layout} form={form} name="control-hooks" onFinish={handleClick}>
@@ -69,7 +81,7 @@ const AddExerciseModalForm = (props) => {
           </Form.Item>
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit" className="add-button">
-              Add
+              {props.exercise ? 'Update' : 'Add'}
             </Button>
             <Button htmlType="button" onClick={onReset}>
               Clear

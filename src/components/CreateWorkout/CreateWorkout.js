@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Select, DatePicker, Alert, Table } from 'antd';
+import { Form, Input, Button, Select, DatePicker, Alert } from 'antd';
 import axios from 'axios';
 import AddExerciseModal from '../AddExerciseModal/AddExerciseModal';
 import './CreateWorkout.css';
 import '../ContainerStyles.css';
 import timediff from 'timediff';
+import { ExercisesTable } from '../ExercisesTable';
 
 const { RangePicker } = DatePicker;
 
@@ -50,29 +51,6 @@ const CreateWorkout = () => {
       setDuration(diff);
     }
   };
-
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Sets',
-      dataIndex: 'sets',
-      key: 'sets',
-    },
-    {
-      title: 'Reps',
-      dataIndex: 'reps',
-      key: 'reps',
-    },
-    {
-      title: 'Weight',
-      dataIndex: 'weight',
-      key: 'weight',
-    },
-  ];
 
   const handleSubmit = (e) => {
     const formattedDuration = formatDuration(duration);
@@ -142,7 +120,7 @@ const CreateWorkout = () => {
           <label className='exercises-label'>Exercises: </label>
           <AddExerciseModal clickHandler={handleExerciseClick} />
         </div>
-        <Table columns={columns} dataSource={workoutExercises} pagination={{ pageSize: 5 }} className='exercises-table' />
+        <ExercisesTable exercises={workoutExercises} />
         {submitted && <Alert message="Workout added" type="success" showIcon />}
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit" className='submit-button'>

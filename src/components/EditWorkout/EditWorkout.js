@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
-import { Form, Input, DatePicker, Select, Button, Table } from 'antd';
+import { Form, Input, DatePicker, Select, Button } from 'antd';
 import moment from 'moment';
 import AddExerciseModal from '../AddExerciseModal/AddExerciseModal';
 import '../ContainerStyles.css';
+import { ExercisesTable } from '../ExercisesTable';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -13,8 +14,7 @@ const EditWorkout = () => {
     const [form] = Form.useForm();
     const [users, setUsers] = useState([]);
     const [workoutExercises, setWorkoutExercises] = useState([]);
-    const [loadingExercises, setLoadingExercises] = useState(true);
-    const [exercises, setExercises] = useState([]);
+    const [selectedExercise, setSelectedExercise] = useState(null);
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -31,7 +31,6 @@ const EditWorkout = () => {
                 }
 
                 setWorkoutExercises(workoutData.exercises || []);
-
                 form.setFieldsValue({
                     username: workoutData.username,
                     description: workoutData.description,
@@ -45,75 +44,44 @@ const EditWorkout = () => {
         fetchData();
     }, [id, form]);
 
-    useEffect(() => {
-        const fetchExercises = async () => {
-            try {
-                const response = await axios.get('http://localhost:5001/exercises/');
-                if (response.data.length > 0) {
-                    const exerciseNames = response.data.map((exercise) => exercise.name);
-                    setExercises(exerciseNames);
-                }
-            } catch (error) {
-                console.error('Error fetching exercises:', error);
-            } finally {
-                setLoadingExercises(false);
-            }
-        };
-        fetchExercises();
-    }, []);
-
     const onSubmit = (values) => {
-        const exercise = {
+        const workout = {
             username: values.username,
             description: values.description,
             startDate: values.date[0].toISOString(), 
             endDate: values.date[1].toISOString(),
-            exercises: workoutExercises.map(ex => ({
-                name: ex.name,
-                sets: ex.sets,
-                reps: ex.reps,
-                weight: ex.weight,
-            })),
+            exercises: workoutExercises,
         };
 
-        axios.post(`http://localhost:5001/workouts/update/${id}`, exercise)
+        axios.post(`http://localhost:5001/workouts/update/${id}`, workout)
             .then(res => {
-                navigate('/');
+                navigate('/workouts');
             })
             .catch(err => {
                 console.error('Error updating workout:', err);
             });
     };
 
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-        },
-        {
-            title: 'Sets',
-            dataIndex: 'sets',
-            key: 'sets',
-        },
-        {
-            title: 'Reps',
-            dataIndex: 'reps',
-            key: 'reps',
-        },
-        {
-            title: 'Weight',
-            dataIndex: 'weight',
-            key: 'weight',
-        },
-    ];
-
     const handleExerciseClick = (exercise) => {
-        if (exercise.name && exercise.sets && exercise.reps && exercise.weight) {
-            setWorkoutExercises([...workoutExercises, exercise]);
-        } else {
-            console.error('Incomplete exercise data:', exercise);
-        }
+        const updatedExercises = workoutExercises.map(workoutExercise => {
+            if (workoutExercise._id === exercise.id) {
+                return {
+                    ...workoutExercise,
+                    sets: exercise.sets,
+                    reps: exercise.reps,
+                    weight: exercise.weight,
+                    name: exercise.name
+                };
+            }
+            return workoutExercise;
+        });
+    
+        setWorkoutExercises(updatedExercises);
+    };
+    
+    const handleEditExercise = (exercise) => {
+        console.log("Exercise to Edit:", exercise);
+        setSelectedExercise(exercise);
     };
 
     return (
@@ -160,13 +128,9 @@ const EditWorkout = () => {
                 </Form.Item>
                 <div className="exercises-container">
                     <label className='exercises-label'>Exercises: </label>
-                    {loadingExercises ? (
-                        <p>Loading exercises...</p>
-                    ) : (
-                        <AddExerciseModal clickHandler={handleExerciseClick} />
-                    )}
+                    <AddExerciseModal clickHandler={handleExerciseClick} exercise={selectedExercise} />
                 </div>
-                <Table columns={columns} dataSource={workoutExercises} pagination={{ pageSize: 5 }} className='exercises-table' />
+                <ExercisesTable exercises={workoutExercises} handleEditExercise={handleEditExercise} />
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">
                         Save Exercise Log
